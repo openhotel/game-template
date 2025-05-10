@@ -1,0 +1,43 @@
+import { defineConfig } from "vite";
+import reactRefresh from "@vitejs/plugin-react-refresh";
+import react from "@vitejs/plugin-react";
+import tsconfigPaths from "vite-tsconfig-paths";
+
+export default defineConfig({
+  clearScreen: false,
+  plugins: [react(), reactRefresh(), tsconfigPaths()],
+  define: {
+    "process.env.NODE_ENV": JSON.stringify("production"),
+  },
+  root: "./src",
+  base: "/",
+  publicDir: "./assets/",
+  build: {
+    lib: {
+      entry: "./client/game.tsx",
+      fileName: "bundle",
+      formats: ["es"],
+    },
+    outDir: "../build",
+    minify: false,
+    emptyOutDir: true,
+    rollupOptions: {
+      // external: [
+      //   "@openhotel/pixi-components",
+      //   "@oh/utils",
+      //   "react",
+      //   "react-dom",
+      // ],
+      output: {
+        manualChunks: () => "everything",
+      },
+    },
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: "modern",
+      },
+    },
+  },
+});
