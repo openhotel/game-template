@@ -6,7 +6,8 @@
     "start": "vite --host",
     "build": "vite build",
     "prettier:check": "prettier -c ./",
-    "prettier:write": "prettier --write ."
+    "prettier:write": "prettier --write .",
+    "serve": "yarn build && cd build && npx http-server -p 8000 --cors"
   },
   "devDependencies": {
     "@types/node": "22.13.9",
@@ -20,7 +21,7 @@
     "vite-tsconfig-paths": "5.1.4"
   },
   "dependencies": {
-    "@oh/utils": "jsr:^1.5.7",
+    "@oh/utils": "npm:@jsr/oh__utils@1.5.7",
     "@openhotel/pixi-components": "0.0.17",
     "react": "19.0.0",
     "react-dom": "19.0.0"

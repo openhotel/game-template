@@ -9,25 +9,25 @@ export default defineConfig({
   define: {
     "process.env.NODE_ENV": JSON.stringify("production"),
   },
-  root: "./src",
+  root: "./src/client",
   base: "/",
   publicDir: "./assets/",
   build: {
     lib: {
-      entry: "./client/game.tsx",
+      entry: "./game.tsx",
       fileName: "bundle",
       formats: ["es"],
     },
-    outDir: "../build",
+    outDir: "../../build",
     minify: false,
     emptyOutDir: true,
     rollupOptions: {
-      // external: [
-      //   "@openhotel/pixi-components",
-      //   "@oh/utils",
-      //   "react",
-      //   "react-dom",
-      // ],
+      external: [
+        // "react",
+        // "react-dom",
+        //   "@openhotel/pixi-components",
+        //   "@oh/utils",
+      ],
       output: {
         manualChunks: () => "everything",
       },
