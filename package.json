@@ -1,11 +1,11 @@
 {
-  "name": "oh-game-template",
+  "name": "@openhotel/game-template",
   "type": "module",
   "version": "0.0.1",
-  "main": "index.ts",
-  "module": "index.ts",
+  "main": "build/bundle.js",
+  "module": "build/bundle.js",
   "files": [
-    "index.ts"
+    "build/bundle.js"
   ],
   "scripts": {
     "start": "vite --host",
@@ -26,8 +26,8 @@
     "vite-plugin-dts": "^4.5.3",
     "vite-tsconfig-paths": "5.1.4"
   },
-  "peerDependencies": {
-    "@oh/utils": "npm:@jsr/oh__utils@1.5.7",
+  "dependencies": {
+    "@oh/utils": "npm:@jsr/oh__utils@1.5.8",
     "@openhotel/pixi-components": "0.0.17",
     "react": "19.0.0",
     "react-dom": "19.0.0"
