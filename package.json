@@ -2,6 +2,11 @@
   "name": "oh-game-template",
   "type": "module",
   "version": "0.0.1",
+  "main": "index.ts",
+  "module": "index.ts",
+  "files": [
+    "index.ts"
+  ],
   "scripts": {
     "start": "vite --host",
     "build": "vite build",
@@ -18,12 +23,14 @@
     "prettier": "3.5.2",
     "prop-types": "15.8.1",
     "vite": "6.1.6",
+    "vite-plugin-dts": "^4.5.3",
     "vite-tsconfig-paths": "5.1.4"
   },
-  "dependencies": {
+  "peerDependencies": {
     "@oh/utils": "npm:@jsr/oh__utils@1.5.7",
     "@openhotel/pixi-components": "0.0.17",
     "react": "19.0.0",
     "react-dom": "19.0.0"
-  }
+  },
+  "packageManager": "yarn@4.9.1"
 }
