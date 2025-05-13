@@ -1,0 +1,27 @@
+{
+  "tasks": {
+    "install": "corepack enable && (deno task install:base --immutable & deno task install:client --immutable)",
+    "install:force": "deno task install:base & deno task install:client",
+    "install:base": "yarn install",
+    "install:client": "cd app/client && yarn install",
+
+    "start": "deno task start:client & deno task start:server",
+    "start:client": "cd app/client && deno task start",
+    "start:server": "cd app/server && deno task start",
+
+    "start:build:linux": "cd ./build && ./server_linux",
+    "start:build:mac": "cd ./build && ./server_darwin_aarch64",
+
+    "build": "deno run -A ./build.ts",
+
+    "check-storybook": "cd ./app/client && yarn run storybook:build && yarn run storybook:test",
+
+    "progress": "gource --viewport 1600x900 --user-image-dir .gource/avatars -s .25 --hide progress,mouse --high-dpi"
+  },
+  "imports": {
+    "@oh/utils": "jsr:@oh/utils@1.3.25",
+    "@std/cli/parse-args": "jsr:@std/cli/parse-args",
+    "vite": "npm:vite@5.2.14"
+  },
+  "nodeModulesDir": "auto"
+}

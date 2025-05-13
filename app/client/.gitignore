@@ -1,0 +1,8 @@
+.env
+build
+node_modules
+.idea
+.vite
+$vite.config.ts
+.yarn
+vite.config.ts*

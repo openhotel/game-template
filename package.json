@@ -1,36 +1,11 @@
 {
-  "name": "@openhotel/game-template",
-  "type": "module",
-  "version": "0.0.1",
-  "main": "build/bundle.js",
-  "module": "build/bundle.js",
-  "files": [
-    "build/bundle.js"
-  ],
   "scripts": {
-    "start": "vite --host",
-    "build": "vite build",
     "prettier:check": "prettier -c ./",
-    "prettier:write": "prettier --write .",
-    "serve": "yarn build && cd build && npx http-server -p 8000 --cors"
+    "prettier:write": "prettier --write ."
   },
   "devDependencies": {
-    "@types/node": "22.13.9",
-    "@types/react": "19.0.8",
-    "@types/react-dom": "19",
-    "@vitejs/plugin-react": "4.3.3",
-    "@vitejs/plugin-react-refresh": "1.3.6",
     "prettier": "3.5.2",
-    "prop-types": "15.8.1",
-    "vite": "6.1.6",
-    "vite-plugin-dts": "^4.5.3",
-    "vite-tsconfig-paths": "5.1.4"
+    "vite": "6.3.5"
   },
-  "dependencies": {
-    "@oh/utils": "npm:@jsr/oh__utils@1.5.8",
-    "@openhotel/pixi-components": "0.0.17",
-    "react": "19.0.0",
-    "react-dom": "19.0.0"
-  },
-  "packageManager": "yarn@4.9.1"
+  "packageManager": "yarn@4.6.0"
 }

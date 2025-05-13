@@ -1,7 +1,7 @@
-import React, { StrictMode } from "react";
+import { StrictMode } from "react";
 import { ApplicationProvider } from "@openhotel/pixi-components";
 import { GameComponent } from "./modules/game.component";
-import { GameProvider } from "./shared/hooks/game/game.provider";
+import { GameProvider } from "./shared/hooks";
 
 const Preview = () => {
   return (

@@ -1,14 +1,14 @@
-import React, { useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import {
   ContainerComponent,
   EventMode,
   GraphicsComponent,
   GraphicType,
 } from "@openhotel/pixi-components";
-import { useGame } from "../shared/hooks/game/game.context";
+import { useGame } from "../shared/hooks";
 
 export const GameComponent = () => {
-  const { onEnd } = useGame();
+  const { onEnd, events } = useGame();
   const [clicks, setClicks] = useState(0);
 
   const handleClick = useCallback(() => {
@@ -16,6 +16,7 @@ export const GameComponent = () => {
     console.log("click", clicks);
     if (clicks > 9) {
       onEnd();
+      events.emit("finished", { score: 10 });
     }
   }, [clicks, onEnd]);
 

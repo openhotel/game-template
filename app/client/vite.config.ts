@@ -3,19 +3,21 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   clearScreen: false,
+  server: {
+    port: 2000,
+  },
   plugins: [react()],
-  // root: "./src/client",
-  // base: "/",
-  // publicDir: "./assets/",
+  root: "./src",
+  base: "/",
   build: {
+    outDir: "../../../build/client",
     lib: {
-      entry: "./src/client/game.tsx",
-      fileName: (format) => `bundle.js`,
+      entry: "./game.tsx",
+      fileName: "bundle.js",
       formats: ["es"],
     },
-    outDir: "./build",
     minify: true,
-    emptyOutDir: true,
+    emptyOutDir: false,
     rollupOptions: {
       external: [
         "react",
@@ -26,17 +28,7 @@ export default defineConfig({
       output: {
         format: "module",
         manualChunks: () => "everything",
-        // globals: {
-        //   react: "reactu",
-        // },
       },
     },
   },
-  // css: {
-  //   preprocessorOptions: {
-  //     scss: {
-  //       api: "modern",
-  //     },
-  //   },
-  // },
 });

@@ -1,1 +1,1 @@
-export * from "./src/client/game";
+export * from "./app/client/game";
