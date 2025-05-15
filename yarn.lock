@@ -225,6 +225,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@openhotel/game-template@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "@openhotel/game-template@workspace:."
+  dependencies:
+    esbuild: "npm:0.25.4"
+    prettier: "npm:3.5.2"
+    vite: "npm:6.3.5"
+  languageName: unknown
+  linkType: soft
+
 "@pkgjs/parseargs@npm:^0.11.0":
   version: 0.11.0
   resolution: "@pkgjs/parseargs@npm:0.11.0"
@@ -549,7 +559,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:^0.25.0":
+"esbuild@npm:0.25.4, esbuild@npm:^0.25.0":
   version: 0.25.4
   resolution: "esbuild@npm:0.25.4"
   dependencies:
@@ -1146,15 +1156,6 @@ __metadata:
   checksum: 10c0/cbe9b766891da74fbf7c3b50420bb75102e5c59afc0ea45751f7e43a581d2cd93367763f521f820b72e341cf1f6b9951fbdcd3be67a1b0aa774b754525a8b9c7
   languageName: node
   linkType: hard
-
-"root-workspace-0b6124@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "root-workspace-0b6124@workspace:."
-  dependencies:
-    prettier: "npm:3.5.2"
-    vite: "npm:6.3.5"
-  languageName: unknown
-  linkType: soft
 
 "safer-buffer@npm:>= 2.1.2 < 3.0.0":
   version: 2.1.2

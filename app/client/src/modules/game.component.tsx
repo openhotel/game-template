@@ -6,6 +6,7 @@ import {
   GraphicType,
 } from "@openhotel/pixi-components";
 import { useGame } from "../shared/hooks";
+import { GameEvents } from "../shared/enums/index.ts";
 
 export const GameComponent = () => {
   const { onEnd, events } = useGame();
@@ -16,7 +17,7 @@ export const GameComponent = () => {
     console.log("click", clicks);
     if (clicks > 9) {
       onEnd();
-      events.emit("finished", { score: 10 });
+      events.emit(GameEvents.FINISH, { score: 10 });
     }
   }, [clicks, onEnd]);
 

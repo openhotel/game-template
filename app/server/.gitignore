@@ -1,3 +1,10 @@
 /build
 /client
 $mod.ts
+.env
+build
+node_modules
+.idea
+.vite
+$vite.config.ts
+.yarn

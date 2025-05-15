@@ -13,7 +13,7 @@ export default defineConfig({
     outDir: "../../../build/client",
     lib: {
       entry: "./game.tsx",
-      fileName: "bundle.js",
+      fileName: "bundle",
       formats: ["es"],
     },
     minify: true,

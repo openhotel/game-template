@@ -1,11 +1,30 @@
 {
+  "name": "@openhotel/game-template",
+  "version": "0.0.1",
+  "license": "CC BY-NC-SA 4.0",
+  "type": "module",
   "scripts": {
     "prettier:check": "prettier -c ./",
     "prettier:write": "prettier --write ."
   },
   "devDependencies": {
+    "esbuild": "0.25.4",
     "prettier": "3.5.2",
     "vite": "6.3.5"
   },
+  "exports": {
+    ".": {
+      "import": "./build/client/index.js"
+    },
+    "./client": {
+      "import": "./build/client/index.js"
+    },
+    "./server": {
+      "import": "./build/server/index.js"
+    }
+  },
+  "files": [
+    "build"
+  ],
   "packageManager": "yarn@4.6.0"
 }

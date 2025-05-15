@@ -1,0 +1,12 @@
+{
+  "tasks": {
+    "start": "deno run -A --watch=./src --unstable-kv mod.ts"
+  },
+  "imports": {
+    "@oh/utils": "jsr:@oh/utils@1.5.8",
+
+    "modules/": "./src/modules/",
+    "shared/": "./src/shared/"
+  },
+  "nodeModulesDir": "auto"
+}
