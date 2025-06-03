@@ -1,8 +1,13 @@
-import ReactDOM from "react-dom/client";
-import Preview from "./preview";
+import React, { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import {ApplicationComponent} from "modules/application";
 
-const root = document.getElementById("root");
+const domNode = document.getElementById("root");
 
-if (root) {
-  ReactDOM.createRoot(root).render(<Preview />);
-}
+const root = createRoot(domNode);
+
+root.render(
+  <StrictMode>
+    <ApplicationComponent />
+  </StrictMode>,
+);
