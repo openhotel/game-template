@@ -1,6 +1,6 @@
 {
   "tasks": {
-    "start": "deno run -A --unstable-cron --watch=./src --unstable-kv mod.ts"
+    "start": "deno run -A --unstable-cron --watch=./src --unstable-kv dev.ts"
   },
   "imports": {
     "@oh/queue": "jsr:@oh/queue@1.1.1",
@@ -17,6 +17,7 @@
     "deno/": "https://deno.land/std@0.221.0/",
     "input": "https://deno.land/x/input@2.0.4/index.ts",
     "loadenv": "https://deno.land/x/loadenv@v1.0.1/mod.ts",
+    "worker_ionic": "https://deno.land/x/worker_ionic@v1.4.2/mod.ts",
 
     "modules/": "./src/modules/",
     "shared/": "./src/shared/"

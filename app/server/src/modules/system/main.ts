@@ -1,9 +1,10 @@
 import { Envs } from "shared/types/main.ts";
 import { getRandomString } from "@oh/utils";
 import { tasks } from "./tasks.ts";
-import { socket } from "./socket/main.ts";
 import { updater } from "./updater.ts";
 import { manifest } from "./manifest.ts";
+import { worker } from "./worker/main.ts";
+import { Event } from "shared/enums/event.enum.ts";
 
 export const System = (() => {
   let $envs: Envs;
@@ -13,25 +14,21 @@ export const System = (() => {
   const $manifest = manifest();
   const $updater = updater();
   const $tasks = tasks();
-  const $socket = socket();
+  const $worker = worker();
 
   const load = async (envs: Envs) => {
-    console.clear();
-
     $envs = envs;
 
     if (isDevelopment())
-      console.log(
-        "\n\n    ------------------\n    DEVELOPMENT SERVER\n    ------------------\n\n",
-      );
-
-    console.log("server");
+      console.log("\n    -----------\n    GAME SERVER\n    -----------\n");
 
     await $manifest.load();
     await $updater.load();
 
     $tasks.load();
-    await $socket.load();
+    await $worker.load();
+
+    $worker.getServerWorker().emit(Event.LOADED, {});
   };
 
   const getEnvs = () => $envs;
@@ -52,6 +49,5 @@ export const System = (() => {
     isDevelopment,
 
     manifest: $manifest,
-    socket: $socket,
   };
 })();
