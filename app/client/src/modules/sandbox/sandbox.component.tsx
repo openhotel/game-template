@@ -32,8 +32,8 @@ export const SandboxComponent: React.FC = () => {
     >
       <GraphicsComponent
         type={GraphicType.RECTANGLE}
-        width={50}
-        height={50}
+        width={(50 * (MAX_COUNT - count)) / MAX_COUNT}
+        height={(50 * (MAX_COUNT - count)) / MAX_COUNT}
         tint={0xff00ff}
         position={{
           x: count ? getRandomNumber(0, 100) : 0,

@@ -1,0 +1,25 @@
+{
+  "tasks": {
+    "start": "deno run -A --unstable-cron --watch=./src --unstable-kv mod.ts"
+  },
+  "imports": {
+    "@oh/queue": "jsr:@oh/queue@1.1.1",
+    "@oh/utils": "jsr:@oh/utils@1.5.9",
+
+    "@da/socket": "jsr:@da/socket@2.3.0",
+    "@da/bcrypt": "jsr:@da/bcrypt@1.0.0",
+
+    "@std/yaml": "jsr:@std/yaml@1.0.5",
+    "@std/ulid": "jsr:@std/ulid@1",
+    "@std/cli/parse-args": "jsr:@std/cli/parse-args",
+
+    "dayjs": "https://deno.land/x/deno_dayjs@v0.5.0/mod.ts",
+    "deno/": "https://deno.land/std@0.221.0/",
+    "input": "https://deno.land/x/input@2.0.4/index.ts",
+    "loadenv": "https://deno.land/x/loadenv@v1.0.1/mod.ts",
+
+    "modules/": "./src/modules/",
+    "shared/": "./src/shared/"
+  },
+  "nodeModulesDir": "auto"
+}
