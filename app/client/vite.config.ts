@@ -47,6 +47,6 @@ export default defineConfig({
     },
   },
   define: {
-    __APP_VERSION: `{ "version": "__VERSION__" }`,
+    __APP_DATA: `{ "version": "__VERSION__", "gameId": "__GAME_ID__" }`,
   },
 });

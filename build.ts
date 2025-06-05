@@ -1,5 +1,7 @@
 import { parseArgs } from "@std/cli/parse-args";
 import { getBeautyDate } from "@oh/utils";
+import { parse, stringify } from "@std/yaml";
+import { ulid } from "@std/ulid";
 
 const VALID_TARGET_LIST = [
   "x86_64-unknown-linux-gnu",
@@ -26,6 +28,8 @@ try {
 } catch (_) {}
 
 let { version, target, client, server, zip, debug } = parseArgs(Deno.args);
+
+const gameId = ulid();
 
 if (target && target !== "*" && !VALID_TARGET_LIST.includes(target))
   throw `Target '${target}' is not valid!`;
@@ -75,7 +79,9 @@ if (compileAll || client) {
   log(`Server - Generating $vite.config.ts`, "gray");
   await Deno.writeTextFile(
     $temporalViteConfigPath,
-    viteConfigFileText.replace("__VERSION__", version),
+    viteConfigFileText
+      .replace("__VERSION__", version)
+      .replace("__GAME_ID__", gameId),
   );
 
   const command = new Deno.Command(`vite`, {
@@ -105,10 +111,9 @@ if (compileAll || server) {
     await Deno.remove($temporalModPath);
   } catch (_) {}
 
-  const serverMod = (await Deno.readTextFile($permanentModPath)).replace(
-    "__VERSION__",
-    version,
-  );
+  const serverMod = (await Deno.readTextFile($permanentModPath))
+    .replace("__VERSION__", version)
+    .replace("__GAME_ID__", gameId);
 
   log(`Server - Moving assets...`, "gray");
   async function copyDir(src: string, dest: string) {
@@ -137,8 +142,18 @@ if (compileAll || server) {
   }
 
   await copyDir(`${serverPath}/assets`, "./build/assets");
-  //copy manifest
-  await Deno.copyFile(`${serverPath}/manifest.yml`, "./build/manifest.yml");
+
+  //copy manifest and generate new id
+  {
+    log(`Manifest - Generating manifest...`, "gray");
+    let manifest = parse(await Deno.readTextFile(`${serverPath}/manifest.yml`));
+    manifest = {
+      id: gameId,
+      ...manifest,
+    };
+    await Deno.writeTextFile("./build/manifest.yml", stringify(manifest));
+    log(`Manifest - Manifest generated!`, "gray");
+  }
 
   log(`Server - Generating $mod.ts`, "gray");
   await Deno.writeTextFile($temporalModPath, serverMod);

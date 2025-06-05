@@ -11,6 +11,7 @@
     "@da/socket": "jsr:@da/socket@2.3.0",
     "@da/bcrypt": "jsr:@da/bcrypt@1.0.0",
 
+    "@std/path": "jsr:@std/path@1.1.0",
     "@std/yaml": "jsr:@std/yaml@1.0.5",
     "@std/ulid": "jsr:@std/ulid@1",
     "@std/cli/parse-args": "jsr:@std/cli/parse-args",

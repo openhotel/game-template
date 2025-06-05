@@ -3,6 +3,8 @@ import { ProxyContext } from "./proxy.context";
 import { useConfig } from "shared/hooks";
 import {
   getClientSocket,
+  getInternalGameId,
+  getInternalVersion,
   getRandomString,
   getWebSocketUrl,
 } from "shared/utils";
@@ -23,7 +25,6 @@ export const ProxyProvider: React.FunctionComponent<ProxyProps> = ({
     useState<string>("system.connecting");
 
   const params = new URLSearchParams(location.search);
-  const gameId = params.get("game") ?? (isDevelopment() ? ulid() : null);
   const accountId = params.get("account") ?? (isDevelopment() ? ulid() : null);
   const token =
     params.get("token") ?? (isDevelopment() ? getRandomString(16) : null);
@@ -31,9 +32,15 @@ export const ProxyProvider: React.FunctionComponent<ProxyProps> = ({
   const [socket] = useState(() => {
     setLoadingMessage("system.connecting");
 
+    console.log(getInternalVersion(), "protocols", [
+      "game",
+      getInternalGameId(),
+      accountId,
+      token,
+    ]);
     const $socket = getClientSocket({
       url: getWebSocketUrl(`${window.location.origin}/proxy`),
-      protocols: ["game", gameId, accountId, token],
+      protocols: ["game", getInternalGameId(), accountId, token],
       reconnect: false,
       silent: !isDevelopment(),
     });

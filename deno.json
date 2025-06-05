@@ -20,6 +20,8 @@
   },
   "imports": {
     "@oh/utils": "jsr:@oh/utils@1.3.25",
+    "@std/yaml": "jsr:@std/yaml@1.0.5",
+    "@std/ulid": "jsr:@std/ulid@1",
     "@std/cli/parse-args": "jsr:@std/cli/parse-args",
     "vite": "npm:vite@5.2.14"
   },
