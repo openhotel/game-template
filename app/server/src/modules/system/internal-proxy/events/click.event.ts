@@ -3,7 +3,8 @@ import { EventType } from "shared/types/event.types.ts";
 
 export const clickEvent: EventType = {
   event: Event.CLICK,
-  func: (data) => {
+  func: ({ data, user }) => {
+    user.incrementClickCount();
     console.log("click", data);
   },
 };

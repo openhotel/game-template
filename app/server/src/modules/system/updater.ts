@@ -1,13 +1,15 @@
 import { System } from "modules/system/main.ts";
 import { update } from "@oh/utils";
+import { parseArgs } from "@std/cli/parse-args";
 
 export const updater = () => {
   const $update = async () => {
+    const { preventUpdate } = parseArgs(Deno.args);
     const envs = System.getEnvs();
 
     const isDevelopment = envs.version === "development";
 
-    if (isDevelopment || !envs.upgrade) return;
+    if (isDevelopment || preventUpdate) return;
 
     const { repository } = System.manifest.get();
 

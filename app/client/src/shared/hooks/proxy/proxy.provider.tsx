@@ -63,11 +63,21 @@ export const ProxyProvider: React.FunctionComponent<ProxyProps> = ({
     [socket],
   );
 
+  const ready = useCallback(() => {
+    socket?.emit("$$user-ready", { d: Date.now(), p: performance.now() });
+  }, [emit]);
+
+  const exit = useCallback(() => {
+    socket?.emit("$$user-exit", { d: Date.now(), p: performance.now() });
+  }, [emit]);
+
   return (
     <ProxyContext.Provider
       value={{
         emit,
         on,
+        ready,
+        exit,
       }}
       children={
         <LoaderComponent message={loadingMessage} children={children} />

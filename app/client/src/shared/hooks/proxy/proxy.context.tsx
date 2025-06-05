@@ -7,6 +7,8 @@ export type ProxyState = {
     event: Event,
     callback: (data: unknown) => void | Promise<void>,
   ) => () => void;
+  ready: () => void;
+  exit: () => void;
 };
 
 export const ProxyContext = React.createContext<ProxyState>(undefined);

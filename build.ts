@@ -137,6 +137,8 @@ if (compileAll || server) {
   }
 
   await copyDir(`${serverPath}/assets`, "./build/assets");
+  //copy manifest
+  await Deno.copyFile(`${serverPath}/manifest.yml`, "./build/manifest.yml");
 
   log(`Server - Generating $mod.ts`, "gray");
   await Deno.writeTextFile($temporalModPath, serverMod);

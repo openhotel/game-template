@@ -1,6 +1,7 @@
 import { getServerSocket, ServerClient } from "@da/socket";
 import { Development } from "modules/development/main.ts";
 import { Event } from "shared/enums/event.enum.ts";
+import { getRandomString } from "@oh/utils";
 
 const PORT = 29940;
 
@@ -39,14 +40,24 @@ export const proxy = () => {
       Development.internalProxy.getClient().emit(Event.$USER_JOIN, {
         clientId: client.id,
         accountId,
+        username: `Player_${getRandomString(4)}`,
       });
 
+      client.on(Event.$USER_EXIT, () => {
+        client.close();
+      });
       client.on(Event.$USER_DATA, ({ event, message }) => {
         Development.internalProxy.getClient().emit(Event.$USER_DATA, {
           clientId: client.id,
           accountId,
           event,
           message,
+        });
+      });
+      client.on(Event.$USER_READY, () => {
+        Development.internalProxy.getClient().emit(Event.$USER_READY, {
+          clientId: client.id,
+          accountId,
         });
       });
     });
