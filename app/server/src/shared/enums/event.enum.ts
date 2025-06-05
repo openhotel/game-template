@@ -1,11 +1,8 @@
 export enum Event {
-  //out
-  LOADED,
-  GAME_START,
-  GAME_END,
-
-  //in
-  USER_JOIN,
-  USER_LEAVE,
-  USER_DATA,
+  //internal
+  $USER_JOIN = "$$user-join",
+  $USER_LEAVE = "$$user-leave",
+  $USER_DATA = "$$user-data",
+  //
+  CLICK = "click",
 }

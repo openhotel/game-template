@@ -3,7 +3,7 @@ import { AppComponent, CoreLoaderComponent } from "modules/application";
 import { NesterComponent } from "shared/components";
 import { SandboxComponent } from "modules/sandbox";
 import { InitialLoaderComponent } from "./components";
-import { AssetsProvider, ConfigProvider, LanguageProvider } from "shared/hooks";
+import { AssetsProvider, LanguageProvider, ProxyProvider } from "shared/hooks";
 
 export const ApplicationComponent = () => {
   const providers = useMemo(
@@ -12,7 +12,7 @@ export const ApplicationComponent = () => {
       //|\\|//|\\|//|\\|//|\\|//|\\|//|\\|//|\\|
       //|\\|//|\\|//|\\|//|\\|//|\\|//|\\|//|\\|
       InitialLoaderComponent,
-      ConfigProvider,
+      ProxyProvider,
       LanguageProvider,
       AssetsProvider,
       CoreLoaderComponent,

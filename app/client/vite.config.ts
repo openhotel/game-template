@@ -16,18 +16,10 @@ export default defineConfig({
   server: {
     port: 2994,
     proxy: {
-      "/data": PROXY_URL,
-      "/request": PROXY_URL,
-      "/info": PROXY_URL,
-      "/changelog": PROXY_URL,
       "/proxy": {
         target: PROXY_URL,
         ws: true,
       },
-      "/auth": PROXY_URL,
-      //
-      "/icon": PROXY_URL,
-      "/background": PROXY_URL,
     },
     hmr: true,
     allowedHosts: ["hotel.local"],

@@ -1,7 +1,7 @@
 import React, { ReactNode, useCallback, useEffect, useState } from "react";
 import { LoaderComponent } from "shared/components";
 import { LanguageContext } from "./language.context";
-import { useConfig } from "shared/hooks/config";
+import { useConfig } from "shared/hooks";
 import { initReactI18next } from "react-i18next";
 import HttpBackend from "i18next-http-backend";
 import i18next from "i18next";
@@ -14,7 +14,7 @@ type ConfigProps = {
 export const LanguageProvider: React.FunctionComponent<ConfigProps> = ({
   children,
 }) => {
-  const { isDevelopment, getConfig } = useConfig();
+  const { isDevelopment } = useConfig();
 
   const [loadingMessage, setLoadingMessage] = useState<string>(
     "Loading languages...",
@@ -43,7 +43,7 @@ export const LanguageProvider: React.FunctionComponent<ConfigProps> = ({
       .then(() => {
         setLoadingMessage(null);
       });
-  }, [getConfig, isDevelopment, setLoadingMessage]);
+  }, [isDevelopment, setLoadingMessage]);
 
   const changeLanguage = useCallback(async (language: string) => {
     await i18next.changeLanguage(language);

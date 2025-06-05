@@ -1,25 +1,27 @@
 import { getRandomString } from "@oh/utils";
-import { socket } from "./socket.ts";
-import { worker } from "./worker.ts";
+import { proxy } from "./proxy.ts";
+import { internalProxy } from "./internal-proxy.ts";
 
 export const Development = (() => {
   const state = getRandomString(16);
 
-  const $socket = socket();
-  const $worker = worker();
+  const $internalProxy = internalProxy();
+  const $proxy = proxy();
 
   const load = async () => {
     console.log(
       "\n    ------------------\n    DEVELOPMENT SERVER\n    ------------------\n",
     );
+    console.log = (...data) => console.info("DEV ->", ...data);
 
-    await $socket.load();
-    await $worker.load();
+    await $internalProxy.load();
+    $proxy.load();
   };
 
   return {
     load,
 
-    socket: $socket,
+    internalProxy: $internalProxy,
+    proxy: $proxy,
   };
 })();

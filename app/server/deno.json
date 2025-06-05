@@ -1,6 +1,8 @@
 {
   "tasks": {
-    "start": "deno run -A --unstable-cron --watch=./src --unstable-kv dev.ts"
+    "start": "deno task start:dev & deno task start:sys",
+    "start:dev": "deno run -A --watch=./src --unstable-kv dev.ts",
+    "start:sys": "deno run -A --watch=./src --unstable-kv mod.ts --serverPort=24490"
   },
   "imports": {
     "@oh/queue": "jsr:@oh/queue@1.1.1",

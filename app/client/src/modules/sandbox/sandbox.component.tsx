@@ -8,15 +8,19 @@ import {
 } from "@openhotel/pixi-components";
 import { TextComponent } from "shared/components";
 import { getRandomNumber } from "shared/utils";
+import { useProxy } from "shared/hooks";
+import { Event } from "shared/enums";
 
 const MAX_COUNT = 10;
 
 export const SandboxComponent: React.FC = () => {
+  const { emit } = useProxy();
   const [count, setCount] = useState(0);
 
   const onClick = useCallback(() => {
     setCount((count) => count + 1);
-  }, [setCount]);
+    emit(Event.CLICK, { foo: "faa" });
+  }, [setCount, emit]);
 
   useEffect(() => {
     if (count < MAX_COUNT) return;

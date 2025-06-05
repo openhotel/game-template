@@ -3,8 +3,7 @@ import { getRandomString } from "@oh/utils";
 import { tasks } from "./tasks.ts";
 import { updater } from "./updater.ts";
 import { manifest } from "./manifest.ts";
-import { worker } from "./worker/main.ts";
-import { Event } from "shared/enums/event.enum.ts";
+import { internalProxy } from "./internal-proxy/main.ts";
 
 export const System = (() => {
   let $envs: Envs;
@@ -14,21 +13,22 @@ export const System = (() => {
   const $manifest = manifest();
   const $updater = updater();
   const $tasks = tasks();
-  const $worker = worker();
+
+  const $internalProxy = internalProxy();
 
   const load = async (envs: Envs) => {
     $envs = envs;
 
-    if (isDevelopment())
+    if (isDevelopment()) {
       console.log("\n    -----------\n    GAME SERVER\n    -----------\n");
-
+      console.log = (...data) => console.info("GAME ->", ...data);
+    }
     await $manifest.load();
     await $updater.load();
 
     $tasks.load();
-    await $worker.load();
 
-    $worker.getServerWorker().emit(Event.LOADED, {});
+    await $internalProxy.load();
   };
 
   const getEnvs = () => $envs;
@@ -49,5 +49,6 @@ export const System = (() => {
     isDevelopment,
 
     manifest: $manifest,
+    proxy: $internalProxy,
   };
 })();
