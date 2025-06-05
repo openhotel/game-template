@@ -7,12 +7,15 @@ export const manifest = () => {
   let $manifest: Manifest;
 
   const load = async () => {
+    const isDevelopment = System.isDevelopment();
+
     const manifestText = await Deno.readTextFile(
-      `${dirname(Deno.execPath())}/manifest.yml`,
+      `${isDevelopment ? "." : dirname(Deno.execPath())}/manifest.yml`,
     );
     $manifest = parse(manifestText);
 
-    if ($manifest.id !== System.getEnvs().gameId) throw "Manifest is invalid!";
+    if (!isDevelopment && $manifest.id !== System.getEnvs().gameId)
+      throw "Manifest is invalid!";
   };
 
   const get = () => $manifest;

@@ -13,7 +13,8 @@
     "jsr:@std/encoding@^1.0.5": "1.0.5",
     "jsr:@std/fs@1.0.4": "1.0.4",
     "jsr:@std/path@1.0.6": "1.0.6",
-    "jsr:@std/path@^1.0.6": "1.0.6",
+    "jsr:@std/path@1.1.0": "1.1.0",
+    "jsr:@std/path@^1.0.6": "1.1.0",
     "jsr:@std/ulid@1": "1.0.0",
     "jsr:@std/yaml@1.0.5": "1.0.5",
     "jsr:@sugar/minio-js-with-startpath@8.0.13": "8.0.13",
@@ -95,6 +96,9 @@
     },
     "@std/path@1.0.6": {
       "integrity": "ab2c55f902b380cf28e0eec501b4906e4c1960d13f00e11cfbcd21de15f18fed"
+    },
+    "@std/path@1.1.0": {
+      "integrity": "ddc94f8e3c275627281cbc23341df6b8bcc874d70374f75fec2533521e3d6886"
     },
     "@std/ulid@1.0.0": {
       "integrity": "d41c3d27a907714413649fee864b7cde8d42ee68437d22b79d5de4f81d808780"
@@ -316,6 +320,7 @@
       "jsr:@oh/queue@1.1.1",
       "jsr:@oh/utils@1.5.9",
       "jsr:@std/cli@*",
+      "jsr:@std/path@1.1.0",
       "jsr:@std/ulid@1",
       "jsr:@std/yaml@1.0.5"
     ]

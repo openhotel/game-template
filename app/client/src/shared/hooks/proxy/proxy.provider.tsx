@@ -25,7 +25,8 @@ export const ProxyProvider: React.FunctionComponent<ProxyProps> = ({
     useState<string>("system.connecting");
 
   const params = new URLSearchParams(location.search);
-  const accountId = params.get("account") ?? (isDevelopment() ? ulid() : null);
+  const accountId =
+    params.get("accountId") ?? (isDevelopment() ? ulid() : null);
   const token =
     params.get("token") ?? (isDevelopment() ? getRandomString(16) : null);
 
