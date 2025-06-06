@@ -1,0 +1,11 @@
+import { load as loadEnv } from "loadenv";
+import { System } from "modules/system/main.ts";
+import { getProcessedEnvs } from "shared/utils/envs.utils.ts";
+
+const envs = getProcessedEnvs({
+  version: "__VERSION__",
+  gameId: "__GAME_ID__",
+});
+
+await loadEnv();
+System.load(envs);
