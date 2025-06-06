@@ -1,15 +1,13 @@
 export enum Event {
-  //internal
-  $USER_JOIN = "$$user-join",
-  $USER_LEAVE = "$$user-leave",
-  $USER_DATA = "$$user-data",
-  $USER_READY = "$$user-ready",
-  $USER_EXIT = "$$user-exit",
-  //
   CLICK = "click",
 }
 
-export enum InternalEvent {
-  DISCONNECT_USER = "disconnect-user",
-  USER_DATA = "user-data",
+export enum ServerEvent {
+  USER_JOIN = "USER_JOIN",
+  USER_LEAVE = "USER_LEAVE",
+  USER_DATA = "USER_DATA",
+  USER_READY = "USER_READY",
+  USER_EXIT = "USER_EXIT",
+
+  DISCONNECT_USER = "DISCONNECT_USER",
 }

@@ -1,11 +1,11 @@
 import { Envs } from "shared/types/main.ts";
-import { getRandomString } from "@oh/utils";
+import { getRandomString, getChildProcessWorker } from "@oh/utils";
 import { tasks } from "./tasks.ts";
 import { updater } from "./updater.ts";
 import { manifest } from "./manifest.ts";
-import { internalProxy } from "./internal-proxy/main.ts";
 import { game } from "./game/main.ts";
 import { parseArgs } from "@std/cli/parse-args";
+import { worker } from "./worker/main.ts";
 
 export const System = (() => {
   let $envs: Envs;
@@ -16,28 +16,30 @@ export const System = (() => {
   const $manifest = manifest();
   const $updater = updater();
   const $tasks = tasks();
+  const $worker = worker();
 
-  const $internalProxy = internalProxy();
+  // const $internalProxy = internalProxy();
 
   const $game = game();
 
   const load = async (envs: Envs) => {
-    $envs = envs;
+    // $envs = envs;
+    //
+    // const { debug } = parseArgs(Deno.args);
+    //
+    // $debug = debug ?? false;
+    //
+    // if (isDevelopment() || $debug) {
+    //   console.log("\n    -----------\n    GAME SERVER\n    -----------\n");
+    //   console.log = (...data) => console.info("GAME ->", ...data);
+    // }
+    // await $manifest.load();
+    // await $updater.load();
+    //
+    // $tasks.load();
 
-    const { debug } = parseArgs(Deno.args);
-
-    $debug = debug ?? false;
-
-    if (isDevelopment() || $debug) {
-      console.log("\n    -----------\n    GAME SERVER\n    -----------\n");
-      console.log = (...data) => console.info("GAME ->", ...data);
-    }
-    await $manifest.load();
-    await $updater.load();
-
-    $tasks.load();
-
-    await $internalProxy.load();
+    // await $internalProxy.load();
+    $worker.load();
   };
 
   const getEnvs = () => $envs;
@@ -60,7 +62,8 @@ export const System = (() => {
     isDebug,
 
     manifest: $manifest,
-    proxy: $internalProxy,
+    // proxy: $internalProxy,
     game: $game,
+    worker: $worker,
   };
 })();

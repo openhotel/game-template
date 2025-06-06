@@ -1,4 +1,4 @@
-import { Event } from "shared/enums/event.enum.ts";
+import { Event, ServerEvent } from "shared/enums/event.enum.ts";
 import { UserMutable } from "shared/types/user.types.ts";
 
 export type EventType = {
@@ -7,7 +7,7 @@ export type EventType = {
 };
 
 export type InternalEventType = {
-  event: Event;
+  event: ServerEvent;
   func: (data: {
     clientId: string;
     accountId: string;

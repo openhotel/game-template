@@ -1,6 +1,6 @@
 import { User, UserMutable } from "shared/types/user.types.ts";
 import { System } from "modules/system/main.ts";
-import { Event, InternalEvent } from "shared/enums/event.enum.ts";
+import { Event, ServerEvent } from "shared/enums/event.enum.ts";
 
 export const users = () => {
   let $userMap: Record<string, UserMutable> = {};
@@ -27,17 +27,19 @@ export const users = () => {
       log("ready");
     };
 
-    const emit = (event: Event, message?: any) =>
-      System.proxy.getSocket().emit(InternalEvent.USER_DATA, {
+    const emit = (event: Event, message?: any) => {
+      System.worker.emit(ServerEvent.USER_DATA, {
         clientId: user.clientId,
         event,
         message,
       });
+    };
 
-    const close = () =>
-      System.proxy
-        .getSocket()
-        .emit(InternalEvent.DISCONNECT_USER, { clientId: user.clientId });
+    const close = () => {
+      System.worker.emit(ServerEvent.DISCONNECT_USER, {
+        clientId: user.clientId,
+      });
+    };
 
     return {
       getAccountId,

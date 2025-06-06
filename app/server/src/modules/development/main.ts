@@ -1,12 +1,9 @@
-import { getRandomString } from "@oh/utils";
 import { proxy } from "./proxy.ts";
-import { internalProxy } from "./internal-proxy.ts";
+import { server } from "./server.ts";
 
 export const Development = (() => {
-  const state = getRandomString(16);
-
-  const $internalProxy = internalProxy();
   const $proxy = proxy();
+  const $server = server();
 
   const load = async () => {
     console.log(
@@ -14,14 +11,14 @@ export const Development = (() => {
     );
     console.log = (...data) => console.info("DEV ->", ...data);
 
-    await $internalProxy.load();
+    $server.load();
     $proxy.load();
   };
 
   return {
     load,
 
-    internalProxy: $internalProxy,
     proxy: $proxy,
+    server: $server,
   };
 })();

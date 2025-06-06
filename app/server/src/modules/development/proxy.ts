@@ -37,7 +37,7 @@ export const proxy = () => {
       clientMap[client.id] = client;
       const accountId = clientAccountMap[client.id];
 
-      Development.internalProxy.getClient().emit(Event.$USER_JOIN, {
+      Development.server.emit(Event.$USER_JOIN, {
         clientId: client.id,
         accountId,
         username: `Player_${getRandomString(4)}`,
@@ -47,7 +47,7 @@ export const proxy = () => {
         client.close();
       });
       client.on(Event.$USER_DATA, ({ event, message }) => {
-        Development.internalProxy.getClient().emit(Event.$USER_DATA, {
+        Development.server.emit(Event.$USER_DATA, {
           clientId: client.id,
           accountId,
           event,
@@ -55,7 +55,7 @@ export const proxy = () => {
         });
       });
       client.on(Event.$USER_READY, () => {
-        Development.internalProxy.getClient().emit(Event.$USER_READY, {
+        Development.server.emit(Event.$USER_READY, {
           clientId: client.id,
           accountId,
         });
@@ -66,7 +66,7 @@ export const proxy = () => {
 
       const accountId = clientAccountMap[client.id];
 
-      Development.internalProxy.getClient().emit(Event.$USER_LEAVE, {
+      Development.server.emit(Event.$USER_LEAVE, {
         clientId: client.id,
         accountId,
       });

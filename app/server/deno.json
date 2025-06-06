@@ -1,12 +1,10 @@
 {
   "tasks": {
-    "start": "deno task start:dev & deno task start:sys",
-    "start:dev": "deno run -A --watch=./src --unstable-kv dev.ts",
-    "start:sys": "deno run -A --watch=./src --unstable-kv mod.ts --internalProxyPort=24490"
+    "start": "deno run -A --watch=./src --unstable-kv dev.ts --dev"
   },
   "imports": {
     "@oh/queue": "jsr:@oh/queue@1.1.1",
-    "@oh/utils": "jsr:@oh/utils@1.5.9",
+    "@oh/utils": "jsr:@oh/utils@1.5.10",
 
     "@da/socket": "jsr:@da/socket@2.3.0",
     "@da/bcrypt": "jsr:@da/bcrypt@1.0.0",

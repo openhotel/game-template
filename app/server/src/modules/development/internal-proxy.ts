@@ -1,6 +1,6 @@
 import { getServerSocket, ServerClient } from "@da/socket";
 import { Development } from "modules/development/main.ts";
-import { InternalEvent } from "shared/enums/event.enum.ts";
+import { ServerEvent } from "shared/enums/event.enum.ts";
 
 const PORT = 24490;
 
@@ -26,10 +26,10 @@ export const internalProxy = () => {
       console.log("INTERNAL ->", "connected", client.id);
       $client = client;
 
-      $client.on(InternalEvent.DISCONNECT_USER, ({ clientId }) => {
+      $client.on(ServerEvent.DISCONNECT_USER, ({ clientId }) => {
         Development.proxy.getClient(clientId)?.close();
       });
-      $client.on(InternalEvent.USER_DATA, ({ clientId, event, message }) => {
+      $client.on(ServerEvent.USER_DATA, ({ clientId, event, message }) => {
         Development.proxy.getClient(clientId)?.emit(event, message);
       });
     });
