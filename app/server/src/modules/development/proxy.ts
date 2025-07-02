@@ -1,6 +1,6 @@
 import { getServerSocket, ServerClient } from "@da/socket";
 import { Development } from "modules/development/main.ts";
-import { Event } from "shared/enums/event.enum.ts";
+import { Event, ServerEvent } from "shared/enums/event.enum.ts";
 import { getRandomString } from "@oh/utils";
 
 const PORT = 29940;
@@ -37,28 +37,29 @@ export const proxy = () => {
       clientMap[client.id] = client;
       const accountId = clientAccountMap[client.id];
 
-      Development.server.emit(Event.$USER_JOIN, {
+      Development.server.emit(ServerEvent.USER_JOIN, {
         clientId: client.id,
         accountId,
         username: `Player_${getRandomString(4)}`,
       });
 
-      client.on(Event.$USER_EXIT, () => {
-        client.close();
+      client.on("$$user-ready", () => {
+        Development.server.emit(ServerEvent.USER_READY, {
+          clientId: client.id,
+          accountId,
+        });
       });
-      client.on(Event.$USER_DATA, ({ event, message }) => {
-        Development.server.emit(Event.$USER_DATA, {
+      client.on("$$user-data", ({ event, message }) => {
+        Development.server.emit(ServerEvent.USER_DATA, {
           clientId: client.id,
           accountId,
           event,
           message,
+          d: performance.now(),
         });
       });
-      client.on(Event.$USER_READY, () => {
-        Development.server.emit(Event.$USER_READY, {
-          clientId: client.id,
-          accountId,
-        });
+      client.on("$$user-exit", () => {
+        client.close();
       });
     });
     server.on("disconnected", (client: ServerClient) => {
@@ -66,7 +67,7 @@ export const proxy = () => {
 
       const accountId = clientAccountMap[client.id];
 
-      Development.server.emit(Event.$USER_LEAVE, {
+      Development.server.emit(ServerEvent.USER_LEAVE, {
         clientId: client.id,
         accountId,
       });

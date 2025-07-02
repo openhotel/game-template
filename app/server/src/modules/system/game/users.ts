@@ -21,6 +21,7 @@ export const users = () => {
         return close();
       }
       emit(Event.CLICK, { status: 200 });
+      console.log("click", clickCount);
     };
 
     const ready = () => {

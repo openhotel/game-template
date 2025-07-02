@@ -9,7 +9,8 @@ export const Development = (() => {
     console.log(
       "\n    ------------------\n    DEVELOPMENT SERVER\n    ------------------\n",
     );
-    console.log = (...data) => console.info("DEV ->", ...data);
+    // console.log = (...data) =>
+    //   Deno.stdout.write(new TextEncoder().encode(`DEV -> ${data.join(" ")}`));
 
     $server.load();
     $proxy.load();

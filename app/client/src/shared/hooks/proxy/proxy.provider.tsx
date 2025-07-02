@@ -60,7 +60,8 @@ export const ProxyProvider: React.FunctionComponent<ProxyProps> = ({
 
   const emit = useCallback(
     (event: Event, message: unknown) => {
-      socket?.emit("$$user-data", { event, message });
+      console.log(event, message, socket);
+      socket.emit("$$user-data", { event, message });
     },
     [socket],
   );

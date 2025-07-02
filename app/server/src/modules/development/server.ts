@@ -18,10 +18,12 @@ export const server = () => {
     //   emit("test", Date.now());
     // });
 
-    $worker.on(ServerEvent.USER_DATA, () => {});
+    $worker.on(ServerEvent.USER_DATA, (a) => {
+      // console.log(a);
+    });
   };
 
-  const emit = (event: Event, data: any) => $worker.emit(event, data);
+  const emit = (event: ServerEvent, data: any) => $worker.emit(event, data);
 
   return {
     load,
