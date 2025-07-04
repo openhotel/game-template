@@ -23,10 +23,6 @@ export const SandboxComponent: React.FC = () => {
   }, [setCount, emit]);
 
   useEffect(() => {
-    if (count < MAX_COUNT) return;
-  }, [count]);
-
-  useEffect(() => {
     ready();
   }, [ready]);
 

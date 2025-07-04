@@ -17,11 +17,11 @@ export const users = () => {
 
     const incrementClickCount = () => {
       clickCount++;
+      console.log("click", clickCount);
       if (clickCount >= 10) {
         return close();
       }
       emit(Event.CLICK, { status: 200 });
-      console.log("click", clickCount);
     };
 
     const ready = () => {

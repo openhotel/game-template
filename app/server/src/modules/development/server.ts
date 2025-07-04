@@ -18,6 +18,9 @@ export const server = () => {
     //   emit("test", Date.now());
     // });
 
+    $worker.on(ServerEvent.DISCONNECT_USER, (a) => {
+      console.log(a);
+    });
     $worker.on(ServerEvent.USER_DATA, (a) => {
       // console.log(a);
     });
