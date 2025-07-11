@@ -1,6 +1,6 @@
 import { getServerSocket, ServerClient } from "@da/socket";
 import { Development } from "modules/development/main.ts";
-import { Event, ServerEvent } from "shared/enums/event.enum.ts";
+import { ServerEvent } from "shared/enums/event.enum.ts";
 import { getRandomString } from "@oh/utils";
 
 const PORT = 29940;
@@ -27,13 +27,10 @@ export const proxy = () => {
 
         clientAccountMap[clientId] = accountId;
         accountClientMap[accountId] = clientId;
-        // console.log("PROXY ->", "guest", clientId, gameId, accountId, token);
         return true;
       },
     );
     server.on("connected", async (client: ServerClient) => {
-      // console.log("PROXY ->", "connected", client.id);
-
       clientMap[client.id] = client;
       const accountId = clientAccountMap[client.id];
 
@@ -63,8 +60,6 @@ export const proxy = () => {
       });
     });
     server.on("disconnected", (client: ServerClient) => {
-      // console.log("PROXY ->", "disconnected", client.id);
-
       const accountId = clientAccountMap[client.id];
 
       Development.server.emit(ServerEvent.USER_LEAVE, {

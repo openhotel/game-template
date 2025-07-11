@@ -1,10 +1,9 @@
 import { Envs } from "shared/types/main.ts";
-import { getRandomString, getChildProcessWorker } from "@oh/utils";
+import { getRandomString } from "@oh/utils";
 import { tasks } from "./tasks.ts";
 import { updater } from "./updater.ts";
 import { manifest } from "./manifest.ts";
 import { game } from "./game/main.ts";
-import { parseArgs } from "@std/cli/parse-args";
 import { worker } from "./worker/main.ts";
 
 export const System = (() => {
@@ -17,8 +16,6 @@ export const System = (() => {
   const $updater = updater();
   const $tasks = tasks();
   const $worker = worker();
-
-  // const $internalProxy = internalProxy();
 
   const $game = game();
 
