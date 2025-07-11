@@ -1,5 +1,6 @@
 import { getParentProcessWorker } from "@oh/utils";
-import { Event, ServerEvent } from "shared/enums/event.enum.ts";
+import { ServerEvent } from "shared/enums/event.enum.ts";
+import { Development } from "./main.ts";
 
 export const server = () => {
   let $worker;
@@ -13,16 +14,12 @@ export const server = () => {
       "mod.ts",
       "--dev",
     ]);
-    // on("foo", (data) => {
-    //   console.log(data);
-    //   emit("test", Date.now());
-    // });
 
-    $worker.on(ServerEvent.DISCONNECT_USER, (a) => {
-      console.log(a);
+    $worker.on(ServerEvent.DISCONNECT_USER, ({ clientId }) => {
+      Development.proxy.getClient(clientId)?.close();
     });
-    $worker.on(ServerEvent.USER_DATA, (a) => {
-      // console.log(a);
+    $worker.on(ServerEvent.USER_DATA, ({ clientId, event, message }) => {
+      Development.proxy.getClient(clientId).emit(event, message);
     });
   };
 
