@@ -36,6 +36,7 @@ export const System = (() => {
     // $tasks.load();
 
     // await $internalProxy.load();
+    console.log("GAME LOADED!");
     $worker.load();
   };
 
