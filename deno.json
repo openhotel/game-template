@@ -6,11 +6,12 @@
     "install:client": "cd app/client && yarn install",
 
     "start": "deno task start:server & deno task start:client",
+    "start:build": "deno task start:server:build & deno task start:client",
+
     "start:client": "cd app/client && deno task start",
     "start:server": "cd app/server && deno task start",
+    "start:server:build": "cd app/server && deno task start:build",
 
-    "start:build:linux": "cd ./build && ./server_linux",
-    "start:build:mac": "cd ./build && ./server_darwin_aarch64",
 
     "build": "deno run -A ./build.ts",
 

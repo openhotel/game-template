@@ -13,10 +13,13 @@ export const userDataEvent: InternalEventType = {
     if (!CLIENT_EVENT_WHITELIST.includes(event)) return close();
 
     const foundEvent = eventList.find(($event) => $event.event === event);
+
     if (!foundEvent) return close();
 
     const user = System.game.users.get(accountId);
 
-    foundEvent.func({ data: JSON.stringify(message ?? "{}"), user });
+    if (!user) return close();
+
+    foundEvent.func({ data: message, user });
   },
 };

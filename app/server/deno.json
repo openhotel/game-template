@@ -1,10 +1,11 @@
 {
   "tasks": {
-    "start": "deno run -A --watch=./src --unstable-kv dev.ts --dev"
+    "start": "deno run -A --watch=./src --unstable-kv dev.ts --dev",
+    "start:build": "deno run -A --watch=./src --unstable-kv dev.ts --dev --build"
   },
   "imports": {
     "@oh/queue": "jsr:@oh/queue@1.1.1",
-    "@oh/utils": "jsr:@oh/utils@1.5.13",
+    "@oh/utils": "jsr:@oh/utils@1.5.14",
 
     "@da/socket": "jsr:@da/socket@2.3.0",
     "@da/bcrypt": "jsr:@da/bcrypt@1.0.0",

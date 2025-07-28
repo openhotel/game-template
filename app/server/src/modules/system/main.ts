@@ -33,7 +33,11 @@ export const System = (() => {
     // await $manifest.load();
     // await $updater.load();
     //
-    // $tasks.load();
+
+    /**
+     * /!\ Important to start a loop to prevent the server to exit /!\
+     */
+    $tasks.load();
 
     // await $internalProxy.load();
     console.log("GAME LOADED!");

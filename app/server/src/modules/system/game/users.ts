@@ -17,7 +17,6 @@ export const users = () => {
 
     const incrementClickCount = () => {
       clickCount++;
-      console.log("click", clickCount);
       if (clickCount >= 10) {
         return close();
       }
@@ -67,7 +66,9 @@ export const users = () => {
     delete $userMap[accountId];
   };
 
-  const get = (accountId: string): UserMutable | null => $userMap[accountId];
+  const get = (accountId: string): UserMutable | null => {
+    return $userMap[accountId];
+  };
 
   const getList = async () => Object.values($userMap);
 
