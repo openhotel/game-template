@@ -1,16 +1,14 @@
 {
   "compilerOptions": {
-    "moduleResolution": "bundler",
-    "module": "ESNext",
-    "target": "ESNext",
+    "moduleResolution": "node",
+    "module": "es2022",
+    "target": "es2022",
     "esModuleInterop": true,
     "sourceMap": false,
     "noUnusedLocals": true,
-    "lib": ["dom", "esnext"],
+    "lib": ["es2023", "DOM"],
     "baseUrl": "./src",
     "rootDir": "./src",
-    "jsx": "react-jsx"
-  },
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
-  "exclude": ["node_modules", "dist"]
+    "jsx": "react"
+  }
 }

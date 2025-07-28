@@ -5,12 +5,13 @@
     "install:base": "yarn install",
     "install:client": "cd app/client && yarn install",
 
-    "start": "deno task start:client & deno task start:server",
+    "start": "deno task start:server & deno task start:client",
+    "start:build": "deno task start:server:build & deno task start:client",
+
     "start:client": "cd app/client && deno task start",
     "start:server": "cd app/server && deno task start",
+    "start:server:build": "cd app/server && deno task start:build",
 
-    "start:build:linux": "cd ./build && ./server_linux",
-    "start:build:mac": "cd ./build && ./server_darwin_aarch64",
 
     "build": "deno run -A ./build.ts",
 
@@ -20,6 +21,8 @@
   },
   "imports": {
     "@oh/utils": "jsr:@oh/utils@1.3.25",
+    "@std/yaml": "jsr:@std/yaml@1.0.5",
+    "@std/ulid": "jsr:@std/ulid@1",
     "@std/cli/parse-args": "jsr:@std/cli/parse-args",
     "vite": "npm:vite@5.2.14"
   },
