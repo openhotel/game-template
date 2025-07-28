@@ -1,6 +1,6 @@
 name: game-template
 repository: openhotel/game-template
 client:
-  path: '/client'
+  path: "/client"
 properties:
   kickFromCurrentRoom: true
