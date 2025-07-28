@@ -2,36 +2,35 @@ import { Envs } from "shared/types/main.ts";
 import { getRandomString } from "@oh/utils";
 import { tasks } from "./tasks.ts";
 import { updater } from "./updater.ts";
-import { manifest } from "./manifest.ts";
 import { game } from "./game/main.ts";
 import { worker } from "./worker/main.ts";
+import { ulid } from "@std/ulid";
+import { parseArgs } from "@std/cli/parse-args";
+import { config } from "./config.ts";
 
 export const System = (() => {
   let $envs: Envs;
   let $debug = false;
 
+  let $id = ulid();
+
   const $token = getRandomString(16);
 
-  const $manifest = manifest();
   const $updater = updater();
   const $tasks = tasks();
   const $worker = worker();
+  const $config = config();
 
   const $game = game();
 
   const load = async (envs: Envs) => {
-    // $envs = envs;
+    $envs = envs;
     //
-    // const { debug } = parseArgs(Deno.args);
-    //
-    // $debug = debug ?? false;
-    //
-    // if (isDevelopment() || $debug) {
-    //   console.log("\n    -----------\n    GAME SERVER\n    -----------\n");
-    //   console.log = (...data) => console.info("GAME ->", ...data);
-    // }
-    // await $manifest.load();
-    // await $updater.load();
+    const { gameId } = parseArgs(Deno.args);
+    $id = gameId;
+
+    await $config.load(envs);
+    await $updater.load();
     //
 
     /**
@@ -52,6 +51,8 @@ export const System = (() => {
   const isDevelopment = () => $envs.version === "development";
   const isDebug = () => $debug;
 
+  const getGameId = () => $id;
+
   return {
     load,
 
@@ -63,9 +64,10 @@ export const System = (() => {
     isDevelopment,
     isDebug,
 
-    manifest: $manifest,
-    // proxy: $internalProxy,
+    getGameId,
+
     game: $game,
     worker: $worker,
+    config: $config,
   };
 })();
