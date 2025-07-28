@@ -12,7 +12,6 @@
     "start:server": "cd app/server && deno task start",
     "start:server:build": "cd app/server && deno task start:build",
 
-
     "build": "deno run -A ./build.ts",
 
     "check-storybook": "cd ./app/client && yarn run storybook:build && yarn run storybook:test",
