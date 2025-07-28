@@ -6,11 +6,5 @@ type Props = {
 };
 
 export const AppComponent: React.FC<Props> = ({ children }) => {
-
-  return useMemo(
-    () => (
-      <ApplicationProvider children={children} />
-    ),
-    [children],
-  );
+  return useMemo(() => <ApplicationProvider children={children} />, [children]);
 };
