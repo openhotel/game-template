@@ -13,7 +13,7 @@ export const server = () => {
     console.log();
 
     $worker = getParentProcessWorker(
-      build ? "../../build/server_linux" : "deno",
+      build ? "../../build/game_linux" : "deno",
       build
         ? []
         : ["run", "-A", "--watch=./src", "--unstable-kv", "mod.ts", "--dev"],
