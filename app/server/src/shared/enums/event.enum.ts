@@ -11,5 +11,7 @@ export enum ServerEvent {
   USER_DATA = "USER_DATA",
   USER_READY = "USER_READY",
 
+  USER_REWARD = "USER_REWARD",
+
   DISCONNECT_USER = "DISCONNECT_USER",
 }

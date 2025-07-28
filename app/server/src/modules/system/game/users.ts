@@ -18,6 +18,10 @@ export const users = () => {
     const incrementClickCount = () => {
       clickCount++;
       if (clickCount >= 10) {
+        System.worker.emit(ServerEvent.USER_REWARD, {
+          clientId: user.clientId,
+          amount: 10,
+        });
         return close();
       }
       emit(Event.CLICK, { status: 200 });
