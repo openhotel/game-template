@@ -2,11 +2,11 @@
 /client
 config.yml
 users.yml
-server-database
-server-database-shm
-server-database-wal
-server-database-key
-server-database-pep
+database
+database-shm
+database-wal
+database-key
+database-pep
 database-backups
 server.key
 $mod.ts

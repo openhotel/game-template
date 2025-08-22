@@ -1,5 +1,5 @@
 import { Envs } from "shared/types/main.ts";
-import { getRandomString } from "@oh/utils";
+import { getRandomString, DbMutable, getDb } from "@oh/utils";
 import { tasks } from "./tasks.ts";
 import { updater } from "./updater.ts";
 import { game } from "./game/main.ts";
@@ -20,6 +20,7 @@ export const System = (() => {
   const $tasks = tasks();
   const $worker = worker();
   const $config = config();
+  const $db: DbMutable = getDb({ pathname: `./database` });
 
   const $game = game();
 
@@ -33,6 +34,7 @@ export const System = (() => {
     await $updater.load();
     //
 
+    await $db.load();
     /**
      * /!\ Important to start a loop to prevent the server to exit /!\
      */
