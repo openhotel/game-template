@@ -5,7 +5,7 @@
     "jsr:@da/socket@2.3.0": "2.3.0",
     "jsr:@deno/kv-utils@0.1.3": "0.1.3",
     "jsr:@oh/queue@1.1.1": "1.1.1",
-    "jsr:@oh/utils@1.5.22": "1.5.22",
+    "jsr:@oh/utils@1.5.23": "1.5.23",
     "jsr:@std/bytes@^1.0.3": "1.0.6",
     "jsr:@std/bytes@^1.0.6": "1.0.6",
     "jsr:@std/cli@*": "1.0.21",
@@ -54,8 +54,8 @@
     "@oh/queue@1.1.1": {
       "integrity": "8e8ec809202c48beaf436b3ea01b4c3a17f8c015ca686d906822482c9c881390"
     },
-    "@oh/utils@1.5.22": {
-      "integrity": "c1fb0a5a799fd5ac903a49964421ee76cdb05a18be888f205b50f4ac22a81869",
+    "@oh/utils@1.5.23": {
+      "integrity": "2f5933e3f0afbc06a44782efde7d411169489b988a2dbdedc3d72942f5908c40",
       "dependencies": [
         "jsr:@da/bcrypt",
         "jsr:@deno/kv-utils",
@@ -320,7 +320,7 @@
       "jsr:@da/bcrypt@1.0.0",
       "jsr:@da/socket@2.3.0",
       "jsr:@oh/queue@1.1.1",
-      "jsr:@oh/utils@1.5.22",
+      "jsr:@oh/utils@1.5.23",
       "jsr:@std/cli@*",
       "jsr:@std/path@1.1.0",
       "jsr:@std/ulid@1",
