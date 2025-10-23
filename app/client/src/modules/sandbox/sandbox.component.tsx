@@ -5,6 +5,7 @@ import {
   EventMode,
   GraphicsComponent,
   GraphicType,
+  useWindow,
 } from "@openhotel/pixi-components";
 import { TextComponent } from "shared/components";
 import { getRandomNumber } from "shared/utils";
@@ -14,13 +15,22 @@ import { Event } from "shared/enums";
 const MAX_COUNT = 10;
 
 export const SandboxComponent: React.FC = () => {
-  const { emit, ready, exit } = useProxy();
+  const { emit, ready, exit, on } = useProxy();
+  const { setSize } = useWindow();
   const [count, setCount] = useState(0);
 
   const onClick = useCallback(() => {
     setCount((count) => count + 1);
     emit(Event.CLICK, { foo: "faa" });
   }, [setCount, emit]);
+
+  useEffect(() => {
+    on("$$config" as any, (config) => {
+      if (config.screen === "windowed") {
+        setSize(config.windowSize);
+      }
+    });
+  }, [on, setSize]);
 
   useEffect(() => {
     ready();
