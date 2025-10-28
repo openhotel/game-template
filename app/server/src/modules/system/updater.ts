@@ -9,7 +9,7 @@ export const updater = () => {
 
     const isDevelopment = envs.version === "development";
 
-    const { name, version } = System.config.get();
+    const { repo, version } = System.config.get();
 
     if (isDevelopment || preventUpdate || version === "development") return;
 
@@ -18,7 +18,7 @@ export const updater = () => {
       await update({
         targetVersion: System.config.getVersion(),
         version: envs.version,
-        repository: name,
+        repository: repo,
         log: console.log,
         debug: console.debug,
       })
