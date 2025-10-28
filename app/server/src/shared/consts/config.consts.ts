@@ -8,6 +8,6 @@ export const CONFIG_DEFAULT: ConfigTypes = {
   screen: "fullscreen",
   windowSize: {
     width: 200,
-    height: 100,
+    height: 150,
   },
 };
