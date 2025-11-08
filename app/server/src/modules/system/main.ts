@@ -6,7 +6,7 @@ import { game } from "./game/main.ts";
 import { worker } from "./worker/main.ts";
 import { ulid } from "@std/ulid";
 import { parseArgs } from "@std/cli/parse-args";
-import { config } from "./config.ts";
+import { settings } from "modules/system/settings.ts";
 
 export const System = (() => {
   let $envs: Envs;
@@ -19,7 +19,7 @@ export const System = (() => {
   const $updater = updater();
   const $tasks = tasks();
   const $worker = worker();
-  const $config = config();
+  const $settings = settings();
   const $db: DbMutable = getDb({ pathname: `./database` });
 
   const $game = game();
@@ -30,7 +30,7 @@ export const System = (() => {
     const { gameId } = parseArgs(Deno.args);
     $id = gameId;
 
-    await $config.load(envs);
+    await $settings.load(envs);
     await $updater.load();
     //
 
@@ -70,6 +70,6 @@ export const System = (() => {
 
     game: $game,
     worker: $worker,
-    config: $config,
+    settings: $settings,
   };
 })();

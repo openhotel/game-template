@@ -1,0 +1,8 @@
+version: development
+name: Game Template
+repo: openhotel/game-template
+kickFromCurrentRoom: true
+screen: windowed
+windowSize:
+  width: 200
+  height: 150

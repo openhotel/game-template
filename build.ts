@@ -1,5 +1,5 @@
 import { parseArgs } from "@std/cli/parse-args";
-import { getBeautyDate } from "@oh/utils";
+import { getBeautyDate, readYaml } from "@oh/utils";
 
 const VALID_TARGET_LIST = [
   "x86_64-unknown-linux-gnu",
@@ -105,10 +105,12 @@ if (compileAll || server) {
     await Deno.remove($temporalModPath);
   } catch (_) {}
 
-  const serverMod = (await Deno.readTextFile($permanentModPath)).replace(
-    "__VERSION__",
-    version,
-  );
+  const settings = await readYaml(serverPath + "/settings.yml");
+
+  const serverMod = (await Deno.readTextFile($permanentModPath))
+    .replace("__VERSION__", version)
+    .replace('"__SETTINGS__"', JSON.stringify(settings, null));
+  console.log(settings);
 
   log(`Server - Moving assets...`, "gray");
   async function copyDir(src: string, dest: string) {
