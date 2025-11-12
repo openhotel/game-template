@@ -1,7 +1,7 @@
 export enum Event {
   CLICK = "click",
 
-  $$CONFIG = "$$config",
+  $$SETTINGS = "$$settings",
 }
 
 export enum ServerEvent {

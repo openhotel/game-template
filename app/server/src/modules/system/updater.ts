@@ -9,14 +9,14 @@ export const updater = () => {
 
     const isDevelopment = envs.version === "development";
 
-    const { repo, version } = System.config.get();
+    const { repo, version } = System.settings.get();
 
     if (isDevelopment || preventUpdate || version === "development") return;
 
     console.info(`Trying to update from ${envs.version}...`);
     if (
       await update({
-        targetVersion: System.config.getVersion(),
+        targetVersion: System.settings.getVersion(),
         version: envs.version,
         repository: repo,
         log: console.log,

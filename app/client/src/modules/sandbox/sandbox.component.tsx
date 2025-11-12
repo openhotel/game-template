@@ -25,7 +25,7 @@ export const SandboxComponent: React.FC = () => {
   }, [setCount, emit]);
 
   useEffect(() => {
-    on("$$config" as any, (config) => {
+    on("$$settings" as any, (config) => {
       if (config.screen === "windowed") {
         setSize(config.windowSize);
       }
