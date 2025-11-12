@@ -110,7 +110,6 @@ if (compileAll || server) {
   const serverMod = (await Deno.readTextFile($permanentModPath))
     .replace("__VERSION__", version)
     .replace('"__SETTINGS__"', JSON.stringify(settings, null));
-  console.log(settings);
 
   log(`Server - Moving assets...`, "gray");
   async function copyDir(src: string, dest: string) {
