@@ -33,12 +33,6 @@ export const ProxyProvider: React.FunctionComponent<ProxyProps> = ({
   const [socket] = useState(() => {
     setLoadingMessage("system.connecting");
 
-    console.log(getInternalVersion(), "protocols", [
-      "game",
-      gameId,
-      accountId,
-      token,
-    ]);
     const $socket = getClientSocket({
       url: getWebSocketUrl(`${window.location.origin}/proxy`),
       protocols: ["game", gameId, accountId, token],
