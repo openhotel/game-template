@@ -6,7 +6,7 @@ export const settings = () => {
 
   const load = async (envs: Envs) => {
     $settings = {
-      ...await readYaml("./settings.yml"),
+      ...(await readYaml("./settings.yml")),
       version: envs.version,
     };
   };
