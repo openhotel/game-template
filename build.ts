@@ -105,8 +105,6 @@ if (compileAll || server) {
     await Deno.remove($temporalModPath);
   } catch (_) {}
 
-  await Deno.copyFile(serverPath + "/settings.yml", "./build/settings.yml");
-
   const serverMod = (await Deno.readTextFile($permanentModPath)).replace(
     "__VERSION__",
     version,
@@ -139,6 +137,8 @@ if (compileAll || server) {
   }
 
   await copyDir(`${serverPath}/assets`, "./build/assets");
+
+  await Deno.copyFile(serverPath + "/settings.yml", "./build/settings.yml");
 
   log(`Server - Generating $mod.ts`, "gray");
   await Deno.writeTextFile($temporalModPath, serverMod);
