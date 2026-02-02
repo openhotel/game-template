@@ -1,4 +1,4 @@
-export type ConfigTypes = {
+export type SettingsTypes = {
   version: string;
   name: string;
   repo: string;

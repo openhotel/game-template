@@ -9,6 +9,7 @@ export const userReadyEvent: InternalEventType = {
 
     user.ready();
 
-    if (System.isDevelopment()) user.emit(Event.$$CONFIG, System.config.get());
+    if (System.isDevelopment())
+      user.emit(Event.$$SETTINGS, System.settings.get());
   },
 };

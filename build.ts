@@ -1,5 +1,5 @@
 import { parseArgs } from "@std/cli/parse-args";
-import { getBeautyDate } from "@oh/utils";
+import { getBeautyDate, readYaml } from "@oh/utils";
 
 const VALID_TARGET_LIST = [
   "x86_64-unknown-linux-gnu",
@@ -138,6 +138,8 @@ if (compileAll || server) {
 
   await copyDir(`${serverPath}/assets`, "./build/assets");
 
+  await Deno.copyFile(serverPath + "/settings.yml", "./build/settings.yml");
+
   log(`Server - Generating $mod.ts`, "gray");
   await Deno.writeTextFile($temporalModPath, serverMod);
 
@@ -187,6 +189,7 @@ if (compileAll || server) {
           ".",
           "-i",
           $targetName + (os.includes("windows") ? ".exe" : ""),
+          "./settings.yml",
           "./assets/*",
           "./client/*",
           "-x",
