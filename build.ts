@@ -189,7 +189,7 @@ if (compileAll || server) {
           ".",
           "-i",
           $targetName + (os.includes("windows") ? ".exe" : ""),
-          "settings.yml",
+          "./settings.yml",
           "./assets/*",
           "./client/*",
           "-x",
