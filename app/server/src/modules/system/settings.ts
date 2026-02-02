@@ -5,15 +5,8 @@ export const settings = () => {
   let $settings: SettingsTypes;
 
   const load = async (envs: Envs) => {
-    const isDevelopment = envs.version === "development";
-
-    if (isDevelopment) {
-      $settings = await readYaml("./settings.yml");
-      return;
-    }
-
     $settings = {
-      ...(envs.settings as SettingsTypes),
+      ...await readYaml("./settings.yml"),
       version: envs.version,
     };
   };
