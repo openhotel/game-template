@@ -105,11 +105,12 @@ if (compileAll || server) {
     await Deno.remove($temporalModPath);
   } catch (_) {}
 
-  const settings = await readYaml(serverPath + "/settings.yml");
+  await Deno.copyFile(serverPath + "/settings.yml", "./build/settings.yml");
 
-  const serverMod = (await Deno.readTextFile($permanentModPath))
-    .replace("__VERSION__", version)
-    .replace('"__SETTINGS__"', JSON.stringify(settings, null));
+  const serverMod = (await Deno.readTextFile($permanentModPath)).replace(
+    "__VERSION__",
+    version,
+  );
 
   log(`Server - Moving assets...`, "gray");
   async function copyDir(src: string, dest: string) {
